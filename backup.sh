@@ -15,6 +15,11 @@ if [ "${S3_BUCKET}" == "**None**" ]; then
   exit 1
 fi
 
+if [ "${MYSQLDUMP_DATABASE}" == "**None**" ]; then
+  echo "You need to set the MYSQLDUMP_DATABASE environment variable (database name OR --all-databases)."
+  exit 1
+fi
+
 if [ "${MYSQL_HOST}" == "**None**" ]; then
   echo "You need to set the MYSQL_HOST environment variable."
   exit 1

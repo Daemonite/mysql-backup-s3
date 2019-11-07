@@ -1,11 +1,7 @@
-FROM alpine:latest
-LABEL maintainer="Johannes Schickling <schickling.j@gmail.com>"
-
-ADD install.sh install.sh
-RUN sh install.sh && rm install.sh
+FROM debian:latest
 
 ENV MYSQLDUMP_OPTIONS --quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384
-ENV MYSQLDUMP_DATABASE --all-databases
+ENV MYSQLDUMP_DATABASE **None**
 ENV MYSQL_HOST **None**
 ENV MYSQL_PORT 3306
 ENV MYSQL_USER **None**
@@ -19,9 +15,17 @@ ENV S3_S3V4 no
 ENV S3_PREFIX 'backup'
 ENV S3_FILENAME **None**
 ENV MULTI_FILES no
-ENV SCHEDULE **None**
 
-ADD run.sh run.sh
-ADD backup.sh backup.sh
+# install mysqldump, pip, awscli
+RUN apt-get update && \
+	apt-get install -y mariadb-client-10.3 python3 python3-pip && \
+	pip3 install awscli && \
+	apt-get autoremove -y && \
+	apt-get remove -y python3-pip && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["sh", "run.sh"]
+ADD run.sh backup.sh /
+RUN chmod +x /run.sh /backup.sh
+
+CMD ["sh", "/run.sh"]

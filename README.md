@@ -2,7 +2,9 @@
 
 # mysql-backup-s3
 
-Backup MySQL to S3 (supports periodic backups & mutli files)
+Backup MySQL to S3 (supports periodic backups & mutli files).
+
+Updated to use a Debian base image with the latest MySQL Client tools, removed support for `SCHEDULE` using go-cron.
 
 ## Basic usage
 
@@ -27,10 +29,4 @@ $ docker run -e S3_ACCESS_KEY_ID=key -e S3_SECRET_ACCESS_KEY=secret -e S3_BUCKET
 - `S3_ENDPOINT` the AWS Endpoint URL, for S3 Compliant APIs such as [minio](https://minio.io) (default: none)
 - `S3_S3V4` set to `yes` to enable AWS Signature Version 4, required for [minio](https://minio.io) servers (default: no)
 - `MULTI_FILES` Allow to have one file per database if set `yes` default: no)
-- `SCHEDULE` backup schedule time, see explainatons below
 
-### Automatic Periodic Backups
-
-You can additionally set the `SCHEDULE` environment variable like `-e SCHEDULE="@daily"` to run the backup automatically.
-
-More information about the scheduling can be found [here](http://godoc.org/github.com/robfig/cron#hdr-Predefined_schedules).
