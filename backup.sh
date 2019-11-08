@@ -45,6 +45,8 @@ fi
 MYSQL_HOST_OPTS="-h $MYSQL_HOST -P $MYSQL_PORT -u$MYSQL_USER -p$MYSQL_PASSWORD"
 DUMP_START_TIME=$(date +"%Y-%m-%dT%H%M%SZ")
 
+mysqldump --version
+
 copy_s3 () {
   SRC_FILE=$1
   DEST_FILE=$2
