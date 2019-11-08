@@ -28,5 +28,5 @@ $ docker run -e S3_ACCESS_KEY_ID=key -e S3_SECRET_ACCESS_KEY=secret -e S3_BUCKET
 - `S3_REGION` the AWS S3 bucket region (default: us-west-1)
 - `S3_ENDPOINT` the AWS Endpoint URL, for S3 Compliant APIs such as [minio](https://minio.io) (default: none)
 - `S3_S3V4` set to `yes` to enable AWS Signature Version 4, required for [minio](https://minio.io) servers (default: no)
-- `MULTI_FILES` Allow to have one file per database if set `yes` default: no)
+- `MULTI_DATABASES` Allow to have one file per database if set `yes` default: no)
 

@@ -14,7 +14,7 @@ ENV S3_ENDPOINT **None**
 ENV S3_S3V4 no
 ENV S3_PREFIX 'backup'
 ENV S3_FILENAME **None**
-ENV MULTI_FILES no
+ENV MULTI_DATABASES no
 
 # install mysqldump, pip, awscli
 RUN apt-get update && \
