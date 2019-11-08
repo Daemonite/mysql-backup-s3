@@ -1,6 +1,6 @@
-FROM debian:latest
+FROM ubuntu:latest
 
-ENV MYSQLDUMP_OPTIONS --quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384
+ENV MYSQLDUMP_OPTIONS --quick --no-create-db --add-drop-table --add-locks --allow-keywords --quote-names --disable-keys --single-transaction --create-options --comments --net_buffer_length=16384
 ENV MYSQLDUMP_DATABASE **None**
 ENV MYSQL_HOST **None**
 ENV MYSQL_PORT 3306
@@ -18,7 +18,7 @@ ENV MULTI_DATABASES no
 
 # install mysqldump, pip, awscli
 RUN apt-get update && \
-	apt-get install -y mariadb-client-10.3 python3 python3-pip && \
+	apt-get install -y mysql-client python3 python3-pip && \
 	pip3 install awscli && \
 	apt-get autoremove -y && \
 	apt-get remove -y python3-pip && \
