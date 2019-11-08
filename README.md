@@ -4,7 +4,11 @@
 
 Backup MySQL to S3 (supports periodic backups & mutli files).
 
-Updated to use a Debian base image with the latest MySQL Client tools, removed support for `SCHEDULE` using go-cron.
+- Updated to use an Ubuntu base image with the latest MySQL Client tools
+- Removed support for `SCHEDULE` using go-cron
+- Replaced `MULTI_FILES` with `MULTI_DATABASES`, always one file per DB
+- Removed `--databases` argument so SQL won't include `CREATE DATABASE` / `USE` statements
+- Updated default `MYSQLDUMP_OPTIONS` environment variable
 
 ## Basic usage
 
